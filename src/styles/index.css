@@ -1,0 +1,8 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+/* .btn {
+    @apply p-1 px-2 rounded bg-primary text-white whitespace-nowrap subpixel-antialiased ring-2 text-center leading-normal tracking-wide hover:opacity-70 focus:ring-4;
+} */
