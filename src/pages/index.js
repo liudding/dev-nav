@@ -23,11 +23,6 @@ const IndexPage = ({ data }) => {
 
   return (
     <Layout>
-
-      <div>
-
-      </div>
-
       <div>
         {groups.map(group => (<div className="mb-8" key={group.category}>
           <div className="bg-gray-100 flex items-center rounded-2xl px-7" style={{ height: 45, width: 150 }} >

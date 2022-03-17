@@ -39,31 +39,38 @@ import { unid } from '../../utils/index'
 // };
 
 const prepareMenu = menu => {
-  menu.id = unid();
-  if (menu.slug && !menu.url) {
-    menu.url = '/categories/' + menu.slug
-  }
-
+  
   if (menu.items) {
     for (const item of menu.items) {
       prepareMenu(item);
+
+      const active = window.location && (window.location.pathname === item.url || window.location.pathname === config.gatsby.pathPrefix + item.url);
+      
+      if (active) {
+        item.active = true;
+        menu.expanded = true;
+      }
     }
   }
 
   return menu;
 }
 
+
+
+
 const Tree = ({ edges }) => {
   let [treeData] = useState(() => {
 
-    return prepareMenu(menu);
+    const menuTree =  prepareMenu(menu);
+    return menuTree
   });
 
   const defaultCollapsed = {};
 
   treeData.items.forEach(item => {
     if (item.expanded) {
-      defaultCollapsed[item.id] = true;
+      defaultCollapsed[item.id] = false;
     } else {
       defaultCollapsed[item.id] = true
     }
@@ -82,7 +89,7 @@ const Tree = ({ edges }) => {
       className={`${config.sidebar.frontLine ? 'showFrontLine' : 'hideFrontLine'} firstLevel`}
       setCollapsed={toggle}
       collapsed={collapsed}
-      {...treeData}
+      menu={treeData}
     />
   );
 };

@@ -1,4 +1,7 @@
-export default {
+import { unid } from '../utils/index'
+
+const menu = {
+    root: true,
     items: [
         {
             name: "实用工具",
@@ -78,11 +81,58 @@ export default {
         },
         {
             name: "运营",
-            slug: "operation"
+            slug: "operation",
+            items: [{
+                name: "图标",
+                slug: "icons"
+            }, {
+                name: "Logo",
+                slug: "logo"
+            }
+            ]
+        },
+        {
+            name: "产品",
+            slug: "operation",
+            items: [{
+                name: "图标",
+                slug: "icons"
+            }, {
+                name: "Logo",
+                slug: "logo"
+            }
+            ]
         },
         {
             name: "日常办公",
-            slug: "work"
+            slug: "work",
+            items: [{
+                name: "图标",
+                slug: "icons"
+            }, {
+                name: "Logo",
+                slug: "logo"
+            }
+            ]
         }
     ]
 }
+
+
+const prepareMenu = menu => {
+    menu.id = unid();
+    if (menu.slug && !menu.url) {
+      menu.url = '/categories/' + menu.slug
+    }
+  
+    if (menu.items) {
+      for (const item of menu.items) {
+        prepareMenu(item);
+      }
+    }
+  
+    return menu;
+  }
+
+
+export default prepareMenu(menu);

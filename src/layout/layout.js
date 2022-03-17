@@ -5,6 +5,7 @@ import { useStaticQuery, graphql } from "gatsby"
 import Header from "./header"
 import Footer from "./footer"
 import Sidebar from "./sidebar"
+import Breadcrumb from "./breadcrumb"
 // import "./layout.css"
 
 
@@ -28,13 +29,18 @@ const Layout = ({ children }) => {
           <Sidebar />
         </div>
 
-        <div className="container mx-auto pt-8" style={{marginLeft: 200}}>
-          <main className="p-4" >{children}</main>
+        <div className="container mx-auto " style={{ marginLeft: 200 }}>
+          <main className="p-8" >
+            {/* <Breadcrumb></Breadcrumb> */}
+            <div>
+              {children}
+            </div>
+          </main>
 
           <Footer></Footer>
         </div>
 
-       
+
       </div>
 
     </React.Fragment>

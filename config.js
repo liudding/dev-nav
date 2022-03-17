@@ -1,16 +1,15 @@
 const config = {
     gatsby: {
       pathPrefix: '/',
-      siteUrl: 'https://hasura.io',
+      siteUrl: '',
       gaTrackingId: null,
       trailingSlash: false,
     },
     header: {
       logo: 'https://graphql-engine-cdn.hasura.io/learn-hasura/assets/homepage/brand.svg',
-      logoLink: 'https://hasura.io/learn/',
-      title:
-        "<a href='https://hasura.io/learn/'><img class='img-responsive' src='https://graphql-engine-cdn.hasura.io/learn-hasura/assets/homepage/learn-logo.svg' alt='Learn logo' /></a>",
-      githubUrl: 'https://github.com/hasura/gatsby-gitbook-boilerplate',
+      logoLink: '',
+      title: "<a href='#'><img class='img-responsive' src='' alt='' /></a>",
+      githubUrl: '',
       helpUrl: '',
       tweetText: '',
       social: `<li>
@@ -41,11 +40,9 @@ const config = {
       collapsedNav: [
         '/codeblock', // add trailing slash if enabled above
       ],
-      links: [{ text: 'Hasura', link: 'https://hasura.io' }],
+      links: [{ text: 'Hasura', link: '' }],
       frontline: false,
       ignoreIndex: true,
-      title:
-        "<a href='https://hasura.io/learn/'>graphql </a><div class='greenCircle'></div><a href='https://hasura.io/learn/graphql/react/introduction/'>react</a>",
     },
     siteMetadata: {
       title: 'Nave',
