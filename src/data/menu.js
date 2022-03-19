@@ -7,8 +7,11 @@ const menu = {
             name: "实用工具",
             slug: "tools",
             items: [{
-                name: "脑图",
+                name: "思维导图",
                 slug: "mind-map"
+            },{
+                name: "远程控制",
+                slug: "remote-desktop"
             }]
 
         },

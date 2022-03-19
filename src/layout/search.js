@@ -48,7 +48,7 @@ export default function Search() {
 
     return (
         <React.Fragment>
-            <div class="relative ml-6 xl:ml-16 xl:pl-4">
+            <div className="relative ml-6 xl:ml-16 xl:pl-4">
                 <SearchButton onClick={openModal}></SearchButton>
             </div>
 
@@ -80,12 +80,12 @@ export default function Search() {
                 }}>
 
                 <div className="bg-white rounded-lg shadow-lg " style={{ minWidth: 400, minHeight: 250, boxShadow: "0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);" }}>
-                    <div class="relative">
-                        <div class="flex absolute inset-y-0 left-0 items-center pl-3 mr-3 pointer-events-none">
+                    <div className="relative">
+                        <div className="flex absolute inset-y-0 left-0 items-center pl-3 mr-3 pointer-events-none">
                             <SearchIcon size="20"></SearchIcon>
                         </div>
-                        <input onInput={onInputChange} type="text" autofocus="autofocus" class="border-none text-gray-900 text-lg  block w-full pl-12 p-2.5 py-4 hover:none focus:none  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white" placeholder="输入搜索内容" />
-                        <div class="flex absolute inset-y-0 right-0 items-center pr-3">
+                        <input onInput={onInputChange} type="text" autofocus="autofocus" className="border-none text-gray-900 text-lg  block w-full pl-12 p-2.5 py-4 hover:none focus:none  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white" placeholder="输入搜索内容" />
+                        <div className="flex absolute inset-y-0 right-0 items-center pr-3">
                             <button onClick={closeModal} style={{ fontSize: 10 }} className="text-xs px-1 border rounded hover:bg-gray-100">ESC</button>
                         </div>
                     </div>
