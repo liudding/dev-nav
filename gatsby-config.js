@@ -75,7 +75,7 @@ module.exports = {
       resolve: 'gatsby-plugin-local-search',
       options: {
         // unique index name
-        name: 'pages',
+        name: 'apps',
 
         // search engine: flexsearch, lunr
         engine: 'flexsearch',
@@ -87,15 +87,15 @@ module.exports = {
         engineOptions: 'speed',
         query: `
           {
-            allMarkdownRemark {
+            allAppsCsv(filter: {name: {ne: ""}}) {
               nodes {
                 id
-                frontmatter {
-                  name
-                  category
-                  tags
-                }
-                rawMarkdownBody
+                cate3
+                category
+                name
+                tags
+                desc
+                url
               }
             }
           }
@@ -117,11 +117,12 @@ module.exports = {
         // containing properties to index. The objects must contain the `ref`
         // field above (default: 'id'). This is required.
         normalizer: ({ data }) =>
-          data.allMarkdownRemark.nodes.map((node) => ({
+          data.allAppsCsv.nodes.map((node) => ({
             id: node.id,
-            name: node.frontmatter.name,
-            tags: node.frontmatter.tags,
-            body: node.rawMarkdownBody,
+            name: node.name,
+            category: node.category,
+            tags: node.tags,
+            desc: node.desc,
           })),
       },
     },]

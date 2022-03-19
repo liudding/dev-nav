@@ -3,7 +3,7 @@ import { graphql } from 'gatsby'
 import _ from "lodash"
 import Layout from "../layout/layout"
 import Card from "../components/card"
-
+import 'flowbite';
 
 // markup
 const IndexPage = ({ data }) => {
@@ -23,7 +23,9 @@ const IndexPage = ({ data }) => {
 
   return (
     <Layout>
-      <div>
+      <div onKeyDown={() => {
+        alert(1)
+      }}>
         {groups.map(group => (<div className="mb-8" key={group.category}>
           <div className="bg-gray-100 flex items-center rounded-2xl px-7" style={{ height: 45, width: 150 }} >
             <strong>{group.category}</strong>
