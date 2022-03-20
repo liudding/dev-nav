@@ -38,13 +38,15 @@ import { unid } from '../../utils/index'
 
 // };
 
+const isBrowser = typeof window !== "undefined"
+
 const prepareMenu = menu => {
   
   if (menu.items) {
     for (const item of menu.items) {
       prepareMenu(item);
 
-      const active = window.location && (window.location.pathname === item.url || window.location.pathname === config.gatsby.pathPrefix + item.url);
+      const active = isBrowser && window.location && (window.location.pathname === item.url || window.location.pathname === config.gatsby.pathPrefix + item.url);
       
       if (active) {
         item.active = true;

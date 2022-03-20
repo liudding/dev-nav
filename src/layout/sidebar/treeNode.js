@@ -4,6 +4,8 @@ import ClosedSvg from './closed';
 import config from '../../../config';
 import Link from '../../components/link';
 
+const hasDocument = typeof document !== "undefined"
+
 const TreeNode = ({ className = '', setCollapsed, collapsed, menu }) => {
     const { items, name, url, id, root } = menu;
     const isCollapsed = collapsed[id];
@@ -16,7 +18,7 @@ const TreeNode = ({ className = '', setCollapsed, collapsed, menu }) => {
 
     let location;
 
-    if (typeof document != 'undefined') {
+    if (hasDocument) {
         location = document.location;
     }
     const active =

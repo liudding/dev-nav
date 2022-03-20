@@ -7,9 +7,12 @@ const menu = {
             name: "实用工具",
             slug: "tools",
             items: [{
+                name: "Mac",
+                slug: "mac"
+            }, {
                 name: "思维导图",
                 slug: "mind-map"
-            },{
+            }, {
                 name: "远程控制",
                 slug: "remote-desktop"
             }]
@@ -30,7 +33,7 @@ const menu = {
             }, {
                 name: "博客",
                 slug: "blog"
-            },{
+            }, {
                 name: "开放平台",
                 slug: "open-dev"
             }]
@@ -125,17 +128,17 @@ const menu = {
 const prepareMenu = menu => {
     menu.id = unid();
     if (menu.slug && !menu.url) {
-      menu.url = '/categories/' + menu.slug
+        menu.url = '/categories/' + menu.slug
     }
-  
+
     if (menu.items) {
-      for (const item of menu.items) {
-        prepareMenu(item);
-      }
+        for (const item of menu.items) {
+            prepareMenu(item);
+        }
     }
-  
+
     return menu;
-  }
+}
 
 
 export default prepareMenu(menu);

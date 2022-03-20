@@ -30,6 +30,7 @@ module.exports = {
     "gatsby-plugin-sharp",
     "gatsby-transformer-sharp",
     `gatsby-transformer-csv`,
+    `gatsby-transformer-json`,
     {
       resolve: 'gatsby-source-filesystem',
       options: {
@@ -87,7 +88,7 @@ module.exports = {
         engineOptions: 'speed',
         query: `
           {
-            allAppsCsv(filter: {name: {ne: ""}}) {
+            allAppsJson(filter: {name: {ne: ""}}) {
               nodes {
                 id
                 cate3
@@ -117,7 +118,7 @@ module.exports = {
         // containing properties to index. The objects must contain the `ref`
         // field above (default: 'id'). This is required.
         normalizer: ({ data }) =>
-          data.allAppsCsv.nodes.map((node) => ({
+          data.allAppsJson.nodes.map((node) => ({
             id: node.id,
             name: node.name,
             category: node.category,

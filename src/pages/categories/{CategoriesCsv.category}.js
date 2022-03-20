@@ -6,7 +6,7 @@ import Card from "../../components/card"
 
 
 export default function Category({ data }) {
-  const { allAppsCsv: { nodes } } = data
+  const { allAppsJson: { nodes } } = data
 
   let allApps = nodes.map(app => {
     // const app = Object.assign({ excerpt: item.excerpt }, item.frontmatter);
@@ -54,13 +54,14 @@ export default function Category({ data }) {
 }
 
 export const pageQuery = graphql`
-  query CsvQuery($category: String) {
-    allAppsCsv(filter: {category: {eq: $category}, name: {ne: ""}}) {
+  query AppsQuery($category: [String]) {
+    allAppsJson(filter: {tags: {in: $category}}) {
       nodes {
         cate3
         desc
         id
         name
+        logo
         mac
         url
         win

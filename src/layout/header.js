@@ -49,7 +49,7 @@ const Header = () => {
               <CloseIcon className="hidden"></CloseIcon>
             </button>
             <div className="flex justify-between items-center">
-              <a href="https://flowbite.com" className="flex items-center">
+              <a href="/" className="flex items-center">
                 <BoxIcon size="32"></BoxIcon>
                 <span className="ml-3 self-center text-2xl font-semibold whitespace-nowrap dark:text-white">DevNav</span>
               </a>

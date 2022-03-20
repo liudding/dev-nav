@@ -3,7 +3,6 @@ import { graphql } from 'gatsby'
 import _ from "lodash"
 import Layout from "../layout/layout"
 import Card from "../components/card"
-import 'flowbite';
 
 // markup
 const IndexPage = ({ data }) => {
