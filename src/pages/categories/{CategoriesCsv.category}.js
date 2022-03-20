@@ -24,30 +24,25 @@ export default function Category({ data }) {
 
   return (
     <Layout>
-      <div className="">
-        <div className="">
-          {/* <h1>{frontmatter.category}</h1> */}
+      <div>
 
-          <div className="">
-            {groups.map(group => (<div className="" key={group.category}>
-              <div className="bg-gray-10 flex items-center rounded-2xl px-7" style={{ height: 45, width: 150 }} >
-                <strong>{group.cate3}</strong>
-              </div>
-              <div className="grid grid-cols-4 gap-4 xs:grid-cols-2 justify-items-start py-2">
-                {group.apps.map(item => (
-                  <Card card={item} className="ml-2 p-2 font-medium text-lg whitespace-nowrap antialiased border-b-2 border-transparent hover:text-primary hover:border-primary" key={item.id}>
+        {groups.map(group => (
+          <div className="mb-8" key={group.category}>
+            <div className="bg-gray-10 flex items-center rounded-2xl dark:text-gray-300" style={{ height: 45, width: 150 }} >
+              <strong>{group.cate3}</strong>
+            </div>
+            <div className="grid grid-cols-4 gap-4 xs:grid-cols-2 justify-items-start py-2">
+              {group.apps.map(item => (
+                <Card card={item} className="ml-2 p-2 font-medium text-lg whitespace-nowrap antialiased border-b-2 border-transparent hover:text-primary hover:border-primary" key={item.id}>
 
-                  </Card>
-                ))}
-              </div>
+                </Card>
+              ))}
+            </div>
 
-            </div>)
-            )}
-          </div>
-
-
-        </div>
+          </div>)
+        )}
       </div>
+
     </Layout>
 
   )

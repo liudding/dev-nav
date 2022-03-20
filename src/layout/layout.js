@@ -7,6 +7,7 @@ import Footer from "./footer"
 import Sidebar from "./sidebar"
 import Breadcrumb from "./breadcrumb"
 // import "./layout.css"
+import Helmet from 'react-helmet'
 
 
 const Layout = ({ children }) => {
@@ -21,15 +22,22 @@ const Layout = ({ children }) => {
    `)
 
   return (
-    <React.Fragment>
+    <div>
+
+      <Helmet
+        bodyAttributes={{
+          class: 'dark:bg-gray-800'
+        }}
+      />
+
       <Header siteTitle={data.site.siteMetadata?.title || `Title`} />
 
-      <div className="flex">
+      <div className="flex dark:bg-gray-800" style={{}}>
         <div style={{ width: 200, height: '100vh' }} className="fixed px-2 border-r border-gray-200 dark:border-gray-700">
           <Sidebar />
         </div>
 
-        <div className="container mx-auto " style={{ marginLeft: 200 }}>
+        <div className="container mx-auto dark:bg-gray-800" style={{ marginLeft: 200 }}>
           <main className="p-8" >
             {/* <Breadcrumb></Breadcrumb> */}
             <div>
@@ -43,7 +51,7 @@ const Layout = ({ children }) => {
 
       </div>
 
-    </React.Fragment>
+    </div>
   )
 }
 

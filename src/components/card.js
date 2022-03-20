@@ -33,7 +33,7 @@ const Card = ({ card, ...props }) => {
 
             </div>
 
-            <div className="mt-5 text-xl">
+            <div className="mt-5 text-xl dark:text-white">
                 <strong>{card.name}</strong>
             </div>
 
