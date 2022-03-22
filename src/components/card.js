@@ -41,7 +41,7 @@ const Card = ({ card, ...props }) => {
                 <Label className="mr-1" key={tag}>{tag}</Label>
             ))}</div>
 
-            <div className="excerpt mt-4 text-xs text-gray-500 line-clamp-3" style={{height: 48}}>{card.desc}</div>
+            <div className="excerpt mt-4 text-xs text-gray-500 line-clamp-3 leading-normal" style={{height: 54}}>{card.desc}</div>
 
             <div className="w-100 b-0 mt-5 flex justify-between items-center">
                 {card.slug ? <Link to={card.slug} className="text-sm p-2 px-7 border border-black rounded-2xl hover:bg-sky-700">介绍</Link> : <div></div>}

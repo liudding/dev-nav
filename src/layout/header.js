@@ -6,7 +6,7 @@ import { Link } from "gatsby"
 import Search from "./search"
 
 
-const Header = () => {
+const Header = ({className}) => {
 
   // On page load or when changing themes, best to add inline in `head` to avoid FOUC
   // if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
@@ -27,21 +27,9 @@ const Header = () => {
 
   return (
     <React.Fragment>
-      {/* <header position="sticky" className="sticky top-0 z-30 backdrop-blur border-b" style={{ backgroundColor: "rgba(255, 255, 255, 0.9)", backdropFilter: "blur(8px)" }}>
-        <div style={{ height: 64 }} className="container mx-auto flex flex-row justify-between items-center px-2 xl:px-0">
+      
 
-          <div></div>
-
-          <div></div>
-
-          <div>
-           <Search></Search>
-          </div>
-
-        </div>
-      </header> */}
-
-      <header className="flex sticky top-0 z-40 flex-none py-3 mx-auto w-full bg-white border-b border-gray-200 dark:border-gray-600 dark:bg-gray-800">
+      <header className={"flex sticky top-0 z-40 flex-none py-3 mx-auto w-full bg-white border-b border-gray-200 dark:border-gray-600 dark:bg-gray-800 " + className } style={{ backdropFilter: "blur(8px)" }}>
         <div className="flex justify-between items-center px-3 mx-auto w-full max-w-8xl lg:px-4">
           <div className="flex items-center">
             <button id="toggleSidebarMobile" aria-expanded="true" aria-controls="sidebar" className="p-2 mr-2 text-gray-600 rounded cursor-pointer lg:hidden hover:text-gray-900 hover:bg-gray-100 focus:bg-gray-100 dark:focus:bg-gray-700 focus:ring-2 focus:ring-gray-100 dark:focus:ring-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">

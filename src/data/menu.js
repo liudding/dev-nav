@@ -13,6 +13,9 @@ const menu = {
                 name: "思维导图",
                 slug: "mind-map"
             }, {
+                name: "作图工具",
+                slug: "diagram"
+            }, {
                 name: "远程控制",
                 slug: "remote-desktop"
             }]
@@ -77,6 +80,9 @@ const menu = {
             name: "UI 设计",
             slug: "ui",
             items: [{
+                name: "设计体系",
+                slug: "design-system"
+            }, {
                 name: "图标",
                 slug: "icons"
             }, {

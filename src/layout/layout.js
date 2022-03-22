@@ -26,18 +26,18 @@ const Layout = ({ children }) => {
 
       <Helmet
         bodyAttributes={{
-          class: 'dark:bg-gray-800'
+          class: 'dark:bg-gray-900'
         }}
       />
 
-      <Header siteTitle={data.site.siteMetadata?.title || `Title`} />
+      <Header siteTitle={data.site.siteMetadata?.title || `Title`} className="dark:bg-gray-900" />
 
-      <div className="flex dark:bg-gray-800" style={{}}>
+      <div className="flex dark:bg-gray-900" style={{}}>
         <div style={{ width: 200, height: '100vh' }} className="fixed px-2 border-r border-gray-200 dark:border-gray-700">
           <Sidebar />
         </div>
 
-        <div className="container mx-auto dark:bg-gray-800" style={{ marginLeft: 200 }}>
+        <div className="container mx-auto dark:bg-gray-900" style={{ marginLeft: 200 }}>
           <main className="p-8" >
             {/* <Breadcrumb></Breadcrumb> */}
             <div>

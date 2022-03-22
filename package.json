@@ -35,6 +35,7 @@
     "gatsby-plugin-sitemap": "^5.9.0",
     "gatsby-remark-images": "^6.9.1",
     "gatsby-source-filesystem": "^4.9.1",
+    "gatsby-source-mysql": "^2.2.3",
     "gatsby-transformer-csv": "^4.9.0",
     "gatsby-transformer-json": "^4.10.0",
     "gatsby-transformer-remark": "^5.9.1",

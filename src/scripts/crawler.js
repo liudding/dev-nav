@@ -210,7 +210,16 @@ const crawler = new Crawler({
             if (!app['logo']) {
                 const logo = findLogo($);
                 if (logo) {
-                    const logoUrl = logo.src.indexOf('http') >= 0 ? logo.src : `${res.options.uri}/${logo.src}`;
+                    let logoUrl;
+                    if (logo.src.startsWith('//')) {
+                        logoUrl = logo.src;
+                    } else if (logo.src.indexOf('http') >= 0) {
+                        logoUrl = logo.src
+                    } else {
+                        logoUrl = `${res.options.uri}/${logo.src.replace('./', '')}`;
+                        logoUrl = logoUrl.replace('://', '::::').replace('//', '/').replace('::::', '://')
+                    }
+
                     app['logo'] = logoUrl;
                 }
             }
