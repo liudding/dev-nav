@@ -1,6 +1,5 @@
 import * as React from 'react';
-import OpenedSvg from './opened';
-import ClosedSvg from './closed';
+import { ChevronRight as ClosedIcon, ChevronDown as OpenedIcon } from 'react-feather';
 import config from '../../../config';
 import Link from '../../components/link';
 
@@ -34,7 +33,7 @@ const TreeNode = ({ className = '', setCollapsed, collapsed, menu }) => {
                 <button onClick={collapse} type="button" className={itemClassName}>
 
                     <span className={"flex-1 ml-3 text-left whitespace-nowrap"}>{name}</span>
-                    {!isCollapsed ? <OpenedSvg /> : <ClosedSvg />}
+                    {!isCollapsed ? <OpenedIcon size="16"/> : <ClosedIcon size="16"/>}
                 </button>
             ) : (name && <Link to={url} className={itemClassName}>
                 <span className={"flex-1 ml-3 text-left whitespace-nowrap pl-9"}>{name}</span>
