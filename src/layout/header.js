@@ -39,7 +39,8 @@ const Header = ({ className }) => {
   return (
     <React.Fragment>
 
-      <Helmet bodyAttributes={{ class: themeState === 'dark' ? 'dark' : '' }} />
+      <Helmet htmlAttributes={{ class: themeState === 'dark' ? 'dark' : '' }}
+        bodyAttributes={{ class: 'dark:bg-gray-800' }} />
 
       <header className={"flex sticky top-0 z-40 flex-none py-3 mx-auto w-full bg-white border-b border-gray-200 dark:border-gray-600 dark:bg-gray-800 " + className} style={{ backdropFilter: "blur(8px)" }}>
         <div className="flex justify-between items-center px-3 mx-auto w-full max-w-8xl lg:px-4">

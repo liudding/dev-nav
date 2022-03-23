@@ -21,7 +21,7 @@ const Layout = ({ children }) => {
    `)
 
   return (
-    <div style={{minHeight: '100vh'}} className="dark:bg-gray-900">
+    <div style={{minHeight: '100vh'}}>
 
       <Header siteTitle={data.site.siteMetadata?.title || `Title`} className="" />
 
