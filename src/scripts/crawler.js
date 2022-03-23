@@ -1,7 +1,6 @@
 const Crawler = require('crawler');
 var fs = require("fs");
 var cheerio = require("cheerio")
-const Papa = require("papaparse")
 const mysql = require('mysql');
 
 

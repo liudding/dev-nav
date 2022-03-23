@@ -27,7 +27,7 @@ export default function Category({ data }) {
       <div>
 
         {groups.map(group => (
-          <div className="mb-8" key={group.category}>
+          <div className="mb-8" key={group.cate3}>
             <div className="bg-gray-10 flex items-center rounded-2xl dark:text-gray-300" style={{ height: 45, width: 150 }} >
               <strong>{group.cate3}</strong>
             </div>
