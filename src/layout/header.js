@@ -7,9 +7,14 @@ import Search from "./search"
 import Link from "../components/link"
 
 
+const hasDocument = typeof localStorage !== "undefined"
+
 const Header = ({ className }) => {
 
   const [theme] = React.useState(() => {
+    if (!hasDocument) {
+      return false
+    }
     if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
       return 'dark';
     } else {
