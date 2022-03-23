@@ -26,7 +26,7 @@ const Layout = ({ children }) => {
       <Header siteTitle={data.site.siteMetadata?.title || `Title`} className="" />
 
       <div className="flex" style={{}}>
-        <div style={{ width: 200, minHeight: '100vh' }} className="fixed px-2 border-r border-gray-200 dark:border-gray-700">
+        <div style={{ width: 200, height: '100vh' }} className="fixed px-2 border-r border-gray-200 overflow-auto dark:border-gray-700">
           <Sidebar />
         </div>
 

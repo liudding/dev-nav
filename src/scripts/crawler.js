@@ -1,5 +1,6 @@
 const Crawler = require('crawler');
 var fs = require("fs");
+const _ = require('lodash');
 var cheerio = require("cheerio")
 const mysql = require('mysql');
 
@@ -32,6 +33,9 @@ connection.query('SELECT * FROM apps', function (error, results, fields) {
     // }
 
     // console.log(results.length)
+
+    findLogosLocally(results);
+
     startCrawling(results)
 
 });
@@ -108,6 +112,15 @@ function findLogo($) {
             score: 0,
         }
     }).get()
+
+    let icons2 = $('link[rel=apple-touch-icon]').map((i, ele) => {
+        return {
+            ele,
+            score: 0,
+        }
+    }).get()
+
+    icons = icons.concat(icons2);
 
     if (icons && icons.length > 0) {
 
@@ -237,17 +250,35 @@ const crawler = new Crawler({
     }
 });
 
-
-function startCrawling(apps) {
-
+function findLogosLocally(apps) {
     apps.forEach((app, index) => {
 
-        if (!app.logo && app.url) {
+        if (!app.logo && app.name) {
+            const exts = ['png', 'jpg', 'jpeg', 'gif', 'svg'];
+            for (const ext of exts) {
+
+                if ( fs.existsSync(`../../static/images/app-logos/${_.kebabCase(app.name)}.${ext}`)) {
+                    app.logo = `/images/app-logos/${_.kebabCase(app.name)}.${ext}`;
+                    saveApp(app)
+                    break;
+                }
+            }
+           
+        }
+    })
+}
+
+
+function startCrawling(apps) {
+    apps.forEach((app, index) => {
+
+        if (!app.url) {
+           return;
+        }
+
+        if (!app.logo || !app.desc || !app.name) {
             crawler.queue([{
                 uri: app.url,
-                // jQuery: false,
-
-                csvIndex: index,
                 app: app,
             }]);
         }

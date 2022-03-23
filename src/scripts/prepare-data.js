@@ -20,7 +20,7 @@ connection.query('SELECT * FROM apps', function (error, results, fields) {
 
   for (const app of results) {
     const str = JSON.stringify(app, null, true)
-    fs.writeFileSync(`../data/apps/${app.id}.json`, str);
+    fs.writeFileSync(`src/data/apps/${app.id}.json`, str);
   }
 
 });

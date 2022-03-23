@@ -1,7 +1,6 @@
 import PropTypes from "prop-types"
 import React from "react"
 import { Box as BoxIcon, Menu as MenuIcon, X as CloseIcon, Sun as SunIcon, Moon as MoonIcon } from "react-feather"
-import { StaticImage } from "gatsby-plugin-image"
 import Helmet from 'react-helmet'
 import Search from "./search"
 import Link from "../components/link"

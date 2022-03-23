@@ -62,6 +62,7 @@ export const pageQuery = graphql`
         win
         free
         domestic
+        tags
       }
     }
   }
