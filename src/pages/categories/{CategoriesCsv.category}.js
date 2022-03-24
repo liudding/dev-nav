@@ -31,11 +31,12 @@ export default function Category({ data }) {
             <div className="bg-gray-10 flex items-center rounded-2xl dark:text-gray-300" style={{ height: 45, width: 150 }} >
               <strong>{group.cate3}</strong>
             </div>
-            <div className="grid grid-cols-4 gap-4 xs:grid-cols-2 justify-items-start py-2">
+            <div className="grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-4 gap-4 xs:grid-cols-2 justify-items-start py-2">
               {group.apps.map(item => (
-                <Card card={item} className="ml-2 p-2 font-medium text-lg whitespace-nowrap antialiased border-b-2 border-transparent hover:text-primary hover:border-primary" key={item.id}>
+                <Card card={item} className="w-full" key={item.id}>
 
                 </Card>
+
               ))}
             </div>
 
