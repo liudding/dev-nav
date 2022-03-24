@@ -162,15 +162,28 @@ function findLogo($) {
         const alt = $img.attr('alt');
         const cls = $img.attr('class');
 
+        if (!src || src.length >= 255) {
+            return;
+        }
+
         img.src = src;
         img.alt = alt;
+
+        if ($img.attr('id') && $img.attr('id').toLocaleLowerCase().indexOf('logo') >= 0) {
+            img.score += 1.5;
+        }
 
         if (alt && alt.toLocaleLowerCase().indexOf('logo') >= 0) {
             img.score += 1;
         }
 
-        if (src && src.toLocaleLowerCase().indexOf('logo') >= 0) {
+        if (src.toLocaleLowerCase().indexOf('logo') >= 0 ||
+            src.toLocaleLowerCase().indexOf('apple-icon') >= 0) {
             img.score += 1;
+        }
+
+        if (src.toLocaleLowerCase().indexOf('favicon')) {
+            img.score += 0.5;
         }
 
         if (cls && cls.toLocaleLowerCase().indexOf('logo') >= 0) {
@@ -206,6 +219,8 @@ function findLogo($) {
 
 const crawler = new Crawler({
     maxConnections: 10,
+    strictSSL: false,
+    userAgent: 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/68.0.3440.106 Safari/537.36',
     // This will be called for each crawled page
     callback: (error, res, done) => {
         if (error) {
@@ -257,13 +272,13 @@ function findLogosLocally(apps) {
             const exts = ['png', 'jpg', 'jpeg', 'gif', 'svg'];
             for (const ext of exts) {
 
-                if ( fs.existsSync(`../../static/images/app-logos/${_.kebabCase(app.name)}.${ext}`)) {
+                if (fs.existsSync(`../../static/images/app-logos/${_.kebabCase(app.name)}.${ext}`)) {
                     app.logo = `/images/app-logos/${_.kebabCase(app.name)}.${ext}`;
                     saveApp(app)
                     break;
                 }
             }
-           
+
         }
     })
 }
@@ -273,7 +288,7 @@ function startCrawling(apps) {
     apps.forEach((app, index) => {
 
         if (!app.url) {
-           return;
+            return;
         }
 
         if (!app.logo || !app.desc || !app.name) {

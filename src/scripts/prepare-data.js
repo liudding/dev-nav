@@ -19,6 +19,18 @@ connection.query('SELECT * FROM apps', function (error, results, fields) {
   })
 
   for (const app of results) {
+    if (app.mac) {
+      app.tags.push('mac');
+    }
+
+    if (app.win) {
+      app.tags.push('win');
+    }
+
+    if (app.domestic) {
+      app.tags.push('国产');
+    }
+
     const str = JSON.stringify(app, null, true)
     fs.writeFileSync(`src/data/apps/${app.id}.json`, str);
   }
