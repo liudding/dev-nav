@@ -60,7 +60,7 @@ const Card = ({ card, className, ...props }) => {
                     )}
 
                     <div className="text-gray-500 text-sm">
-                        {card.domestic && <ChinaFlag></ChinaFlag>}
+                        {card.domestic ? <ChinaFlag></ChinaFlag> : ''}
                     </div>
 
                 </div>
@@ -77,8 +77,8 @@ const Card = ({ card, className, ...props }) => {
 
             </div>
             <div className="w-full mt-5 flex justify-between items-center">
-                {card.slug ? <Link to={card.slug} className="text-sm p-2 px-7 border border-black rounded-2xl hover:bg-sky-700">介绍</Link> : <div></div>}
-                {card.url && <Link to={card.url} target="_blank" className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-full text-sm px-7 py-2 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">直达</Link>}
+                {card.slug ? <Link to={card.slug} className="text-sm p-1 px-6.5 border border-black rounded-2xl hover:bg-sky-700">介绍</Link> : <div></div>}
+                {card.url && <Link to={card.url} target="_blank" className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-full text-sm px-6 py-1.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700">直达</Link>}
             </div>
 
         </div>

@@ -12,12 +12,12 @@ const IndexPage = ({ data }) => {
   return (
     <Layout>
       <div>
-        <div className="grid grid-cols-4 gap-4 grid-cols-1 sm:grid-cols-1 xs:grid-cols-1 md:grid-cols-4 justify-items-start py-2">
-          {/* {allApps.map(item => (
-            <Card card={item} className="ml-2 p-2 font-medium text-lg whitespace-nowrap antialiased border-b-2 border-transparent hover:text-primary hover:border-primary" key={item.slug}>
+        <div className="grid gap-4 grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-4  justify-items-start py-2">
+          {allApps.map(item => (
+            <Card card={item} className="w-full" key={item.slug}>
 
             </Card>
-          ))} */}
+          ))}
         </div>
 
       </div>

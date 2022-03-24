@@ -52,9 +52,9 @@ const Header = ({ toggleSidebar, sidebarOpen, className }) => {
                 </button>
 
                 <div className="flex justify-between items-center">
-                  <Link to="/" className="flex items-center">
+                  <Link to="/" className="flex items-center dark:text-white">
                     <BoxIcon size="32"></BoxIcon>
-                    <span className="ml-3 self-center text-2xl font-semibold whitespace-nowrap dark:text-white">DevNav</span>
+                    <span className="ml-3 self-center text-2xl font-semibold whitespace-nowrap ">DevNav</span>
                   </Link>
                 </div>
 
