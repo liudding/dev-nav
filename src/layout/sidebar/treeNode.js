@@ -24,8 +24,13 @@ const TreeNode = ({ className = '', setCollapsed, collapsed, menu }) => {
         location && (location.pathname === url || location.pathname === config.gatsby.pathPrefix + url);
 
 
-    const itemClassName = (active ? 'active text-blue-500 font-bold ' : '') + " flex items-center p-2 w-full text-base font-normal text-gray-900 rounded-lg transition duration-75 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700";
-    const calculatedClassName = `${className} item ${active ? 'active text-red-200' : ''}`;
+        if (active){
+            console.log(location.pathname, url);
+        }
+
+
+    const itemClassName = (active ? 'active font-bold text-primary' : 'font-normal text-gray-900') + " flex items-center p-2 w-full text-base rounded-lg transition duration-75 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700";
+    const calculatedClassName = `${className} item ${active ? 'active' : ''}`;
 
     return (
         <li className={calculatedClassName}>

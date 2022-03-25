@@ -1,9 +1,10 @@
 import PropTypes from "prop-types"
 import React from "react"
-import { Box as BoxIcon, Menu as MenuIcon, X as CloseIcon, Sun as SunIcon, Moon as MoonIcon } from "react-feather"
+import { Menu as MenuIcon, X as CloseIcon, Sun as SunIcon, Moon as MoonIcon } from "react-feather"
 import Helmet from 'react-helmet'
 import Search from "./search"
 import Link from "../components/link"
+import Logo from "../components/logo"
 
 
 const hasDocument = typeof localStorage !== "undefined"
@@ -53,7 +54,7 @@ const Header = ({ toggleSidebar, sidebarOpen, className }) => {
 
                 <div className="flex justify-between items-center">
                   <Link to="/" className="flex items-center dark:text-white">
-                    <BoxIcon size="32"></BoxIcon>
+                    <Logo size="32"></Logo>
                     <span className="ml-3 self-center text-2xl font-semibold whitespace-nowrap ">DevNav</span>
                   </Link>
                 </div>
@@ -66,7 +67,7 @@ const Header = ({ toggleSidebar, sidebarOpen, className }) => {
                 </Link>
 
                 <button onClick={toggleTheme} id="theme-toggle" data-tooltip-target="tooltip-toggle" type="button" className="text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg text-sm p-2.5">
-                  {themeState == 'dark' && <MoonIcon></MoonIcon>}
+                  {themeState === 'dark' && <MoonIcon></MoonIcon>}
                   {themeState !== 'dark' && <SunIcon></SunIcon>}
                 </button>
               </div>
