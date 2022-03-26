@@ -1,10 +1,12 @@
 module.exports = {
   siteMetadata: {
-    title: 'Nave',
+    title: 'DevNav',
     description: 'A navigation site for developers',
     siteUrl: `https://www.yourdomain.tld`
   },
   plugins: [
+    "gatsby-plugin-webpack-bundle-analyser-v2",
+    "gatsby-plugin-offline",
     {
       resolve: `gatsby-plugin-sass`,
       options: {

@@ -6,7 +6,7 @@ import Link from '../../components/link';
 const hasDocument = typeof document !== "undefined"
 
 const TreeNode = ({ className = '', setCollapsed, collapsed, menu }) => {
-    const { items, name, url, id, root } = menu;
+    const { items, name, url, id } = menu;
     const isCollapsed = collapsed[id];
 
     const collapse = () => {

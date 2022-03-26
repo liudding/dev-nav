@@ -3,7 +3,6 @@ import config from '../../../config';
 import TreeNode from './treeNode';
 // import categories from '../../data/categories';
 import menu from '../../data/menu'
-import { unid } from '../../utils/index'
 
 // const calculateTreeData = edges => {
 //   let originalData = edges.map(item => item.node.frontmatter);

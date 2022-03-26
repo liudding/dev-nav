@@ -28,11 +28,6 @@ const config = {
       links: [{ text: '', link: '' }],
       frontline: false,
       ignoreIndex: true,
-    },
-    siteMetadata: {
-      title: 'Nave',
-      description: 'A navigation site for developers',
-      siteUrl: `https://www.yourdomain.tld`
     }
   };
   

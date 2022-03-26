@@ -1,14 +1,13 @@
 import React from "react"
-import config from '../../config';
 
-const Footer = () => {
+const Footer = ({siteTitle}) => {
 
     return (
         <React.Fragment>
             <footer className="p-4 sm:p-6 mt-4">
                 <hr className="my-6 border-gray-200 sm:mx-auto dark:border-gray-700 lg:my-8" />
                 <div className="sm:flex sm:items-center sm:justify-between">
-                    <span className="text-sm text-gray-500 sm:text-center dark:text-gray-400">© 2022 <a href="" className="hover:underline">{config.siteMetadata.title}</a>. Made with Love
+                    <span className="text-sm text-gray-500 sm:text-center dark:text-gray-400">© 2022 <a href="" className="hover:underline">{siteTitle}</a>. Made with Love
                     </span>
                     <div className="flex mt-4 space-x-6 sm:justify-center sm:mt-0">
                         {/* <a href="#" className="text-gray-500 hover:text-gray-900 dark:hover:text-white">

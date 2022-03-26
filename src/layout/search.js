@@ -36,13 +36,6 @@ export default function Search({ className }) {
     }
 
 
-    const store = {
-        1: { id: 1, title: 'Document 1' },
-        2: { id: 2, title: 'Document 2' },
-        3: { id: 3, title: 'Document 3' },
-    }
-
-
     const [query, setQuery] = React.useState(null)
     const results = useFlexSearch(query, localSearchApps.index, localSearchApps.store)
 

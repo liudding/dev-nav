@@ -1,4 +1,3 @@
-import PropTypes from "prop-types"
 import React from "react"
 import { Menu as MenuIcon, X as CloseIcon, Sun as SunIcon, Moon as MoonIcon } from "react-feather"
 import Helmet from 'react-helmet'
@@ -9,7 +8,7 @@ import Logo from "../components/logo"
 
 const hasDocument = typeof localStorage !== "undefined"
 
-const Header = ({ toggleSidebar, sidebarOpen, className }) => {
+const Header = ({ toggleSidebar, sidebarOpen, siteTitle, className }) => {
 
   const [theme] = React.useState(() => {
     if (!hasDocument) {
@@ -55,7 +54,7 @@ const Header = ({ toggleSidebar, sidebarOpen, className }) => {
                 <div className="flex justify-between items-center">
                   <Link to="/" className="flex items-center dark:text-white">
                     <Logo size="32"></Logo>
-                    <span className="ml-3 self-center text-2xl font-semibold whitespace-nowrap ">DevNav</span>
+                    <span className="ml-3 self-center text-2xl font-semibold whitespace-nowrap ">{siteTitle}</span>
                   </Link>
                 </div>
 
@@ -81,14 +80,6 @@ const Header = ({ toggleSidebar, sidebarOpen, className }) => {
       </header>
     </React.Fragment>
   )
-}
-
-Header.propTypes = {
-  companyName: PropTypes.string,
-}
-
-Header.defaultProps = {
-  companyName: ``,
 }
 
 export default Header

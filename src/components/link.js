@@ -1,18 +1,34 @@
-import * as React from 'react';
+import React from "react"
 import { Link as GatsbyLink } from 'gatsby';
 import isAbsoluteUrl from 'is-absolute-url';
 
-const Link = ({ to, ...props }) => {
+const Link = ({ to, nested, ...props }) => {
   if (!to) {
-    return <GatsbyLink to={to} {...props} />
+    to = "";
   }
-  return isAbsoluteUrl(to) ? (
+
+  return nested ? (
+    <object>
+      {
+        isAbsoluteUrl(to) ? (
+          <a href={to} {...props}>
+            {props.children}
+          </a>
+        ) : (
+          <GatsbyLink to={to} {...props} />
+        )
+      }
+    </object>
+  ) : (isAbsoluteUrl(to) ? (
     <a href={to} {...props}>
       {props.children}
     </a>
   ) : (
     <GatsbyLink to={to} {...props} />
-  );
+  ))
+
+
+
 }
 
 export default Link;
