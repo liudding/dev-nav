@@ -3,7 +3,7 @@ import React from "react"
 
 const Label = ({ url, name, className }) => {
     return (
-        <div className="logo flex items-center relative">
+        <div className="logo flex items-center relative dark:text-white">
             {/* <Img fluid={featuredImgFluid} style={{ width: 40, height: 40 }} /> */}
 
             {
@@ -11,7 +11,7 @@ const Label = ({ url, name, className }) => {
             }
 
             {!url && (<div style={{ width: 40, height: 40 }} className="flex flex-col justify-around items-center bg-gray-100 rounded-full text-center">
-                <div className="uppercase font-bold text-lg">{name && name.substring(0, 1)}</div>
+                <div className="uppercase font-bold text-lg text-gray-700">{name && name.substring(0, 1)}</div>
             </div>
             )}
         </div>

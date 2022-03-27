@@ -71,7 +71,7 @@ const menu = {
             slug: "php",
             items: [{
                 name: "开发框架",
-                slug: "framework"
+                slug: "php-framework"
             }, {
 
             }]
@@ -91,30 +91,30 @@ const menu = {
             }
             ]
         },
-        {
-            name: "运营",
-            slug: "operation",
-            items: [{
-                name: "图标",
-                slug: "icons"
-            }, {
-                name: "Logo",
-                slug: "logo"
-            }
-            ]
-        },
-        {
-            name: "产品",
-            slug: "operation",
-            items: [{
-                name: "图标",
-                slug: "icons"
-            }, {
-                name: "Logo",
-                slug: "logo"
-            }
-            ]
-        },
+        // {
+        //     name: "运营",
+        //     slug: "operation",
+        //     items: [{
+        //         name: "图标",
+        //         slug: "icons"
+        //     }, {
+        //         name: "Logo",
+        //         slug: "logo"
+        //     }
+        //     ]
+        // },
+        // {
+        //     name: "产品",
+        //     slug: "operation",
+        //     items: [{
+        //         name: "图标",
+        //         slug: "icons"
+        //     }, {
+        //         name: "Logo",
+        //         slug: "logo"
+        //     }
+        //     ]
+        // },
         {
             name: "日常办公",
             slug: "work",
