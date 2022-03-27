@@ -33,7 +33,7 @@ export const useFlexSearch = (query, providedIndex, store, searchOptions) => {
         const importedIndex = FlexSearch.create({
             tokenize: (str) => {
                 const latin = str.toLowerCase().replace(/[^\w]+/g, " ").split(" ").filter(i => !!i)
-                const chinese = str.replace(/[\x00-\x7F]/g, " ").split(" ").filter(i => !!i)
+                const chinese = str.replace(/[\x00-\x7F]/g, "").split("").filter(i => !!i)
                 const tokens = latin.concat(chinese).filter(i => !!i && i.length > 0)
                 return tokens
             }

@@ -21,7 +21,7 @@ export default function Search({ className }) {
 
     const [modalIsOpen, setIsOpen] = React.useState(false);
     function toggleModal(open) {
-        if (open == undefined) {
+        if (open === undefined) {
             setIsOpen(!modalIsOpen);
         } else {
             setIsOpen(!!open);
@@ -46,15 +46,7 @@ export default function Search({ className }) {
 
 
     const [query, setQuery] = React.useState(null)
-    const results = useFlexSearch(query, localSearchApps.index, localSearchApps.store, {
-        tokenize: (str) => {
-            const latin = str.toLowerCase().replace(/[^\w]+/g, " ").split(" ").filter(i => !!i)
-            const chinese = str.replace(/[\x00-\x7F]/g, " ").split(" ").filter(i => !!i)
-            const tokens = latin.concat(chinese).filter(i => !!i && i.length > 0)
-            console.log(tokens)
-            return tokens
-        }
-    })
+    const results = useFlexSearch(query, localSearchApps.index, localSearchApps.store)
 
     hotkeys('cmd+k, ctr+k', function(event, handler){
         // Prevent the default refresh event under WINDOWS system

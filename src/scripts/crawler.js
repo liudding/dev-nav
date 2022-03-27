@@ -2,106 +2,32 @@ const Crawler = require('crawler');
 var fs = require("fs");
 const _ = require('lodash');
 var cheerio = require("cheerio")
-const mysql = require('mysql');
+const dayjs = require("dayjs");
 
+var sqlite3 = require('sqlite3').verbose();
+var db = new sqlite3.Database('src/data/appsdb');
 
-// const csv = fs.readFileSync('../data/apps.csv', 'utf8').toString()
-// var apps = Papa.parse(csv, {
-//     header: true
-// });
+db.serialize(function () {
+    db.all("SELECT * FROM apps", function (err, rows) {
+        findLogosLocally(rows);
 
-var connection = mysql.createConnection({
-    host: 'localhost',
-    user: 'root',
-    password: 'root',
-    database: 'dev-nav'
+        startCrawling(rows)
+    })
 });
 
 
-connection.connect();
-connection.query('SELECT * FROM apps', function (error, results, fields) {
-    if (error) throw error;
-
-    // results = results.map(i => {
-    //   i['tags'] = ( i.tags || '').split(',').filter(t => !!t);
-    //   return i;
-    // })
-
-    // for (const app of results) {
-    //   const str = JSON.stringify(app, null, true)
-    //   fs.writeFileSync(`../data/apps/${app.id}.json`, str);
-    // }
-
-    // console.log(results.length)
-
-    findLogosLocally(results);
-
-    startCrawling(results)
-
-});
-connection.end();
-
+db.close();
 
 
 function saveApp(app) {
-    var conn = mysql.createConnection({
-        host: 'localhost',
-        user: 'root',
-        password: 'root',
-        database: 'dev-nav'
-    });
+    var db = new sqlite3.Database('src/data/appsdb');
 
-    conn.connect();
-    conn.query('UPDATE apps SET name = ?, `desc` = ?, logo = ? WHERE id = ?', [app.name, app.desc, app.logo, app.id], function (error, results, fields) {
-        if (error) {
-            console.error(error);
-            throw error
-        };
-    });
-    conn.end();
+    var stmt = db.prepare("UPDATE apps SET name = ?, `desc` = ?, logo = ?, updated_at =? WHERE id = ?");
+    stmt.run([app.name, app.desc, app.logo, dayjs().format('YYYY-MM-DD HH:mm:ss'), app.id]);
+    stmt.finalize();
+    db.close();
 }
 
-
-
-function findLogoByRegex(html) {
-    const imgReg = /<img.*?(?:>|\/>)/gi;
-
-    let images = html.match(imgReg).map(item => {
-        return {
-            html: item,
-            score: 0,
-        }
-    });
-
-    images.forEach(img => {
-        const $img = cheerio.load(img.html);
-        const src = $img('img').attr('src');
-        const alt = $img('img').attr('alt');
-        const cls = $img('img').attr('class');
-
-        if (alt && alt.toLocaleLowerCase().indexOf('logo') >= 0) {
-            img.score += 1;
-        }
-
-        if (src && src.toLocaleLowerCase().indexOf('logo') >= 0) {
-            img.score += 1;
-        }
-
-        if (cls && cls.toLocaleLowerCase().indexOf('logo') >= 0) {
-            img.score += 1;
-        }
-    });
-
-    images.sort((a, b) => {
-        return a.score < b.score;
-    });
-
-    images = images.filter((img) => {
-        return img.score > 0
-    })
-
-    return images;
-}
 
 function findLogo($) {
 
@@ -214,7 +140,6 @@ function findLogo($) {
     return null;
 
 }
-
 
 
 const crawler = new Crawler({

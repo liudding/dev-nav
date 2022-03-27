@@ -1,20 +1,22 @@
-const mysql      = require('mysql');
 const fs = require("fs");
+var sqlite3 = require('sqlite3').verbose();
+var db = new sqlite3.Database('src/data/appsdb');
 
-var connection = mysql.createConnection({
-  host     : 'localhost',
-  user     : 'root',
-  password : 'root',
-  database : 'dev-nav'
+
+db.serialize(function () {
+  db.all("SELECT * FROM apps", function (err, rows) {
+    saveAppsToJson(rows)
+  })
 });
 
-connection.connect();
 
-connection.query('SELECT * FROM apps', function (error, results, fields) {
-  if (error) throw error;
+db.close();
+
+
+function saveAppsToJson(results) {
 
   results = results.map(i => {
-    i['tags'] = ( i.tags || '').split(',').filter(t => !!t);
+    i['tags'] = (i.tags || '').split(',').filter(t => !!t);
     return i;
   })
 
@@ -34,7 +36,4 @@ connection.query('SELECT * FROM apps', function (error, results, fields) {
     const str = JSON.stringify(app, null, true)
     fs.writeFileSync(`src/data/apps/${app.id}.json`, str);
   }
-
-});
-
-connection.end();
+}
