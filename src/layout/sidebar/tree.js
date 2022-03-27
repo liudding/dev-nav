@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import config from '../../../config';
 import TreeNode from './treeNode';
 // import categories from '../../data/categories';
 import menu from '../../data/menu'
@@ -45,7 +44,7 @@ const prepareMenu = menu => {
     for (const item of menu.items) {
       prepareMenu(item);
 
-      const active = isBrowser && window.location && (window.location.pathname === item.url || window.location.pathname === config.gatsby.pathPrefix + item.url);
+      const active = isBrowser && window.location && (window.location.pathname === item.url);
       
       if (active) {
         item.active = true;
@@ -87,7 +86,7 @@ const Tree = ({ edges }) => {
 
   return (
     <TreeNode
-      className={`${config.sidebar.frontLine ? 'showFrontLine' : 'hideFrontLine'} firstLevel`}
+      className={`first-level`}
       setCollapsed={toggle}
       collapsed={collapsed}
       menu={treeData}

@@ -2,9 +2,11 @@ import React from "react"
 import { useStaticQuery, graphql } from 'gatsby'
 import { Search as SearchIcon } from "react-feather"
 import ReactModal from 'react-modal';
+import hotkeys from 'hotkeys-js';
 import { useFlexSearch } from '../utils/use-flexsearch'
 import SearchButton from "../components/search-button"
 import Link from "../components/link"
+import AppLogo from "../components/app-logo"
 
 
 export default function Search({ className }) {
@@ -18,8 +20,15 @@ export default function Search({ className }) {
     `)
 
     const [modalIsOpen, setIsOpen] = React.useState(false);
+    function toggleModal(open) {
+        if (open == undefined) {
+            setIsOpen(!modalIsOpen);
+        } else {
+            setIsOpen(!!open);
+        }
+    }
     function openModal() {
-        setIsOpen(true);
+        toggleModal(true);
     }
 
     function afterOpenModal() {
@@ -28,7 +37,7 @@ export default function Search({ className }) {
     }
 
     function closeModal() {
-        setIsOpen(false);
+        toggleModal(false);
     }
 
     function onInputChange(e) {
@@ -47,6 +56,12 @@ export default function Search({ className }) {
         }
     })
 
+    hotkeys('cmd+k, ctr+k', function(event, handler){
+        // Prevent the default refresh event under WINDOWS system
+        event.preventDefault() 
+        toggleModal()
+      });
+
     return (
         <React.Fragment>
             <div className={"relative ml-6 xl:ml-16 xl:pl-4 hidden lg:block" + className}>
@@ -61,7 +76,7 @@ export default function Search({ className }) {
             <ReactModal isOpen={modalIsOpen}
                 onAfterOpen={afterOpenModal}
                 onRequestClose={closeModal} shouldCloseOnOverlayClick={true} shouldCloseOnEsc={true}
-                className="bg-none border-none"
+                className="bg-none border-none max-w-[40rem] mx-auto appearance-none outline-none"
                 overlayClassName="fixed top-0 left-0 w-full h-full box-border p-8"
                 style={{
                     overlay: {
@@ -74,11 +89,11 @@ export default function Search({ className }) {
 
                 <div className="mx-auto bg-white rounded-lg shadow-lg dark:bg-slate-900 min-h-content max-h-content max-w-[40rem] overflow-hidden" style={{  }}>
                     <div className="relative">
-                        <div className="flex absolute inset-y-0 left-0 items-center pl-3 mr-3 pointer-events-none">
+                        <div className="flex absolute inset-y-0 left-0 items-center pl-3 mr-3 pointer-events-none text-gray-900 dark:text-gray-400">
                             <SearchIcon size="20"></SearchIcon>
                         </div>
 
-                        <input onInput={onInputChange} type="search" className="bg-transparent appearance-none outline-none border-none focus-visible:border-none text-gray-900 text-lg  block w-full pl-12 p-2.5 py-4 hover:none focus:none active:none  dark:border-gray-600 dark:placeholder-gray-400 dark:text-white" autoComplete="off" autoCorrect="off" autoCapitalize="off" spellCheck="false" placeholder="输入搜索内容" />
+                        <input id="search-input" onInput={onInputChange} type="search" className="bg-transparent appearance-none outline-none border-none focus-visible:border-none text-gray-900 text-lg  block w-full pl-12 p-2.5 py-4 hover:none focus:none active:none  dark:border-gray-600 dark:placeholder-gray-400 dark:text-white" autoComplete="off" autoCorrect="off" autoCapitalize="off" spellCheck="false" placeholder="输入搜索内容" />
                         <div className="flex absolute inset-y-0 right-0 items-center pr-3">
                             <button onClick={closeModal} style={{ fontSize: 10 }} className="text-xs px-1 border rounded hover:bg-gray-100 dark:border-none dark:bg-gray-500 dark:text-gray-200">ESC</button>
                         </div>
@@ -89,10 +104,11 @@ export default function Search({ className }) {
                             {results.map(result => (
                                 <li className="" key={result.id}>
                                     <Link to={result.url} target="_blank" className="flex items-center bg-slate-800 rounded-lg p-2 mt-4 cursor-pointer hover:bg-blue-200">
-                                        <div style={{ width: 40, height: 40, lineHeight: "40px" }} className="text bg-gray-200 rounded-full text-center">hi</div>
+                                        {/* <div style={{ width: 40, height: 40, minWidth: 40, lineHeight: "40px" }} className="text bg-gray-200 rounded-full text-center">hi</div> */}
+                                        {/* <AppLogo url={result.logo} name={result.name}></AppLogo> */}
                                         <div className="ml-3">
                                             <div className="font-bold text-xl dark:text-white">{result.name}</div>
-                                            <div className="text-gray-500 text-sm">{result.desc}</div>
+                                            <div className="text-gray-500 text-sm line-clamp-1">{result.desc}</div>
                                         </div>
                                     </Link>
                                 </li>

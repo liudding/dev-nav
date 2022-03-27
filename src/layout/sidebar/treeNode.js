@@ -1,6 +1,5 @@
 import * as React from 'react';
 import { ChevronRight as ClosedIcon, ChevronDown as OpenedIcon } from 'react-feather';
-import config from '../../../config';
 import Link from '../../components/link';
 
 const hasDocument = typeof document !== "undefined"
@@ -21,7 +20,7 @@ const TreeNode = ({ className = '', setCollapsed, collapsed, menu }) => {
         location = document.location;
     }
     const active =
-        location && (location.pathname === url || location.pathname === config.gatsby.pathPrefix + url);
+        location && (location.pathname === url);
 
 
         if (active){

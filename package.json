@@ -40,6 +40,7 @@
     "gatsby-transformer-json": "^4.10.0",
     "gatsby-transformer-remark": "^5.9.1",
     "gatsby-transformer-sharp": "^4.9.0",
+    "hotkeys-js": "^3.8.7",
     "is-absolute-url": "^4.0.1",
     "lodash": "^4.17.21",
     "mysql": "^2.18.1",

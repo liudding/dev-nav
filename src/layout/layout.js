@@ -33,7 +33,7 @@ const Layout = ({ children }) => {
       <Header siteTitle={data.site.siteMetadata?.title || `Title`} toggleSidebar={toggle} sidebarOpen={sidebarOpen} />
 
       <div className="max-w-8xl mx-auto" style={{}}>
-        <div className="hidden lg:block fixed w-[12rem] h-screen px-2 border-r border-gray-200 overflow-y-auto dark:border-gray-700">
+        <div className="hidden lg:block fixed w-[12rem] h-screen px-2 pb-8 border-r border-gray-200 overflow-y-auto dark:border-gray-700">
           <Sidebar />
         </div>
 

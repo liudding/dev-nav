@@ -4,6 +4,7 @@ import Link from "./link"
 import ChinaFlag from "./icons/china-flag"
 import Apple from "./icons/apple"
 import Windows from "./icons/windows"
+import AppLogo from "./app-logo"
 
 const Card = ({ card, className, ...props }) => {
 
@@ -45,16 +46,7 @@ const Card = ({ card, className, ...props }) => {
         <Link to={card.url} target="_blank" className={"relative block flex flex-col items-center justify-between p-6 max-w-sm rounded-lg border antialiased border-gray-200 hover:bg-gray-100 dark:border-gray-700 dark:hover:bg-gray-700 cursor-pointer " + className}>
             <div className="relative block w-full">
                 <div className="logo flex justify-between items-center relative">
-                    {/* <Img fluid={featuredImgFluid} style={{ width: 40, height: 40 }} /> */}
-
-                    {
-                        card.logo && (card.logo.startsWith('http') || card.logo.startsWith('/')) && <img src={card.logo} style={{ height: 40 }} alt={`${card.name} logo`} />
-                    }
-
-                    {!card.logo && (<div style={{ width: 40, height: 40 }} className="flex flex-col justify-around items-center bg-gray-100 rounded-full text-center">
-                        <div className="uppercase font-bold text-lg">{card.name.substring(0, 1)}</div>
-                    </div>
-                    )}
+                    <AppLogo url={card.logo} name={card.name}></AppLogo>
 
                     <div className="text-gray-500 text-sm">
                         {card.domestic ? <ChinaFlag></ChinaFlag> : ''}
@@ -66,8 +58,8 @@ const Card = ({ card, className, ...props }) => {
                     <strong>{card.name}</strong>
                 </div>
 
-                <div className="mt-4 flex items-center">{card.labels && card.labels.map((tag) => (
-                    typeof tag === 'string' ? <Label key={tag}>{tag}</Label> : <div className="flex items items-center justify-around" style={{ width: 20, height: 20 }}>{tag}</div>
+                <div className="mt-4 flex items-center">{card.labels && card.labels.map((tag, index) => (
+                    typeof tag === 'string' ? <Label key={index}>{tag}</Label> : <div className="flex items items-center justify-around" style={{ width: 20, height: 20 }} key={index}>{tag}</div>
                 ))}</div>
 
                 <div className="excerpt mt-4 text-xs text-gray-500 line-clamp-3 leading-normal" style={{ height: 54, maxHeight: 54 }}>{card.desc}</div>

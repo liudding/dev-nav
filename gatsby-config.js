@@ -122,6 +122,7 @@ module.exports = {
                 tags
                 desc
                 url
+                logo
               }
             }
           }
@@ -131,7 +132,7 @@ module.exports = {
         // List of keys to index. The values of the keys are taken from the
         // normalizer function below.
         // Default: all fields
-        index: ['name'],
+        index: ['name', 'tags', 'desc'],
 
         // List of keys to store and make available in your UI. The values of
         // the keys are taken from the normalizer function below.
@@ -149,7 +150,8 @@ module.exports = {
             category: node.category,
             tags: node.tags.join(" "),
             desc: node.desc,
-            url: node.url
+            url: node.url,
+            logo: node.logo
           })),
       },
     },]
