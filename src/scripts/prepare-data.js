@@ -2,6 +2,8 @@ const fs = require("fs");
 var sqlite3 = require('sqlite3').verbose();
 var db = new sqlite3.Database('src/data/appsdb');
 
+fs.existsSync('src/data/apps') || fs.mkdirSync('src/data/apps');
+
 
 db.serialize(function () {
   db.all("SELECT * FROM apps", function (err, rows) {
