@@ -2,9 +2,10 @@ import React from "react"
 import { useStaticQuery, graphql } from 'gatsby'
 import { Search as SearchIcon } from "react-feather"
 import ReactModal from 'react-modal';
-import { useFlexSearch } from 'react-use-flexsearch'
+import { useFlexSearch } from '../utils/use-flexsearch'
 import SearchButton from "../components/search-button"
 import Link from "../components/link"
+
 
 export default function Search({ className }) {
     const { localSearchApps } = useStaticQuery(graphql`
@@ -15,7 +16,6 @@ export default function Search({ className }) {
             }
         }
     `)
-
 
     const [modalIsOpen, setIsOpen] = React.useState(false);
     function openModal() {
@@ -37,7 +37,15 @@ export default function Search({ className }) {
 
 
     const [query, setQuery] = React.useState(null)
-    const results = useFlexSearch(query, localSearchApps.index, localSearchApps.store)
+    const results = useFlexSearch(query, localSearchApps.index, localSearchApps.store, {
+        tokenize: (str) => {
+            const latin = str.toLowerCase().replace(/[^\w]+/g, " ").split(" ").filter(i => !!i)
+            const chinese = str.replace(/[\x00-\x7F]/g, " ").split(" ").filter(i => !!i)
+            const tokens = latin.concat(chinese).filter(i => !!i && i.length > 0)
+            console.log(tokens)
+            return tokens
+        }
+    })
 
     return (
         <React.Fragment>
@@ -46,32 +54,16 @@ export default function Search({ className }) {
             </div>
 
             <button onClick={openModal} className="p-2 text-gray-600 rounded cursor-pointer lg:hidden hover:text-gray-900 hover:bg-gray-100  dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">
-                <SearchIcon  color="gray"></SearchIcon>
+                <SearchIcon color="gray"></SearchIcon>
             </button>
 
 
             <ReactModal isOpen={modalIsOpen}
                 onAfterOpen={afterOpenModal}
-                onRequestClose={closeModal} shouldCloseOnOverlayClick={true} shouldCloseOnEsc={true} 
+                onRequestClose={closeModal} shouldCloseOnOverlayClick={true} shouldCloseOnEsc={true}
                 className="bg-none border-none"
-                overlayClassName="fixed top-0 left-0 w-full h-full box-border p-5"
+                overlayClassName="fixed top-0 left-0 w-full h-full box-border p-8"
                 style={{
-                    // content: {
-                    //     top: 100,
-                    //     left: '50%',
-                    //     right: 'auto',
-                    //     bottom: 'auto',
-                    //     marginRight: '-50%',
-                    //     transform: 'translate(-50%, 0)',
-                    //     maxHeight: 500,
-                    //     width: 700,
-                    //     padding: 0,
-                    //     border: 'none',
-                    //     background: 'none',
-                    //     overflow: 'auto',
-                    //     // borderRadius: 8,
-                    //     // boxShadow: '5px 0px 20px rgba(0, 0, 0, 0.1)',
-                    // },
                     overlay: {
                         backgroundColor: "rgba(0, 0, 0, 0.2)",
                         backdropFilter: "blur(4px)",
@@ -80,26 +72,26 @@ export default function Search({ className }) {
 
                 }}>
 
-                <div className="bg-white rounded-lg shadow-lg dark:bg-slate-900 min-h-content max-h-content overflow-hidden" style={{ boxShadow: "0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);" }}>
+                <div className="mx-auto bg-white rounded-lg shadow-lg dark:bg-slate-900 min-h-content max-h-content max-w-[40rem] overflow-hidden" style={{  }}>
                     <div className="relative">
                         <div className="flex absolute inset-y-0 left-0 items-center pl-3 mr-3 pointer-events-none">
                             <SearchIcon size="20"></SearchIcon>
                         </div>
 
-                        <input onInput={onInputChange} type="search" autofocus="autofocus" className="bg-transparent appearance-none outline-none border-none focus-visible:border-none text-gray-900 text-lg  block w-full pl-12 p-2.5 py-4 hover:none focus:none active:none  dark:border-gray-600 dark:placeholder-gray-400 dark:text-white" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" placeholder="输入搜索内容" />
+                        <input onInput={onInputChange} type="search" className="bg-transparent appearance-none outline-none border-none focus-visible:border-none text-gray-900 text-lg  block w-full pl-12 p-2.5 py-4 hover:none focus:none active:none  dark:border-gray-600 dark:placeholder-gray-400 dark:text-white" autoComplete="off" autoCorrect="off" autoCapitalize="off" spellCheck="false" placeholder="输入搜索内容" />
                         <div className="flex absolute inset-y-0 right-0 items-center pr-3">
                             <button onClick={closeModal} style={{ fontSize: 10 }} className="text-xs px-1 border rounded hover:bg-gray-100 dark:border-none dark:bg-gray-500 dark:text-gray-200">ESC</button>
                         </div>
                     </div>
                     <hr className="border-gray-200 sm:mx-auto dark:border-gray-500" />
-                    <div className="p-6 max-h-content overflow-y-auto"  style={{minHeight: 250, maxHeight: 400}}>
+                    <div className="p-6 max-h-content overflow-y-auto" style={{ minHeight: 250, maxHeight: 400 }}>
                         <ul className="list-none ">
                             {results.map(result => (
-                                <li className="">
-                                    <Link to={result.url} className="flex items-center bg-slate-800 rounded-lg p-2 mt-4 cursor-pointer hover:bg-blue-200">
-                                        <div style={{ width: 40, height: 40, lineHeight: "40px" }} className="bg-gray-200 rounded-full text-center">hi</div>
+                                <li className="" key={result.id}>
+                                    <Link to={result.url} target="_blank" className="flex items-center bg-slate-800 rounded-lg p-2 mt-4 cursor-pointer hover:bg-blue-200">
+                                        <div style={{ width: 40, height: 40, lineHeight: "40px" }} className="text bg-gray-200 rounded-full text-center">hi</div>
                                         <div className="ml-3">
-                                            <div className="font-bold">{result.name}</div>
+                                            <div className="font-bold text-xl dark:text-white">{result.name}</div>
                                             <div className="text-gray-500 text-sm">{result.desc}</div>
                                         </div>
                                     </Link>

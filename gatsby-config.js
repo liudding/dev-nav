@@ -79,15 +79,38 @@ module.exports = {
       options: {
         // unique index name
         name: 'apps',
-
-        // search engine: flexsearch, lunr
         engine: 'flexsearch',
+        engineOptions: {
+          // charset: "latin",
+          encode: false,
+          tokenize: function (str) {
+            let content = str;
+            if (str.startsWith('{')) {
+              content = "";
+              const doc = JSON.parse(str)
+              for (const key in doc) {
+                content += ' ' + doc[key]
+              }
+            }
 
-        // Provide options to the engine. This is optional and only recommended
-        // for advanced users.
-        //
-        // Note: Only the flexsearch engine supports options.
-        engineOptions: 'speed',
+            const latin = content.toLowerCase().replace(/[^\w]+/g, " ").split(" ").filter(i => !!i)
+            const chinese = content.replace(/[\x00-\x7F]/g, " ").split(" ").filter(i => !!i)
+            const tokens = latin.concat(chinese).filter(i => !!i && i.length > 0)
+
+            return tokens
+          },
+          resolution: 9,
+          filter: [
+            // array blacklist
+            "in",
+            "into",
+            "is",
+            "isn't",
+            "it",
+            "it's"
+          ]
+        },
+
         query: `
           {
             allAppsJson(filter: {name: {ne: ""}}) {
@@ -108,7 +131,7 @@ module.exports = {
         // List of keys to index. The values of the keys are taken from the
         // normalizer function below.
         // Default: all fields
-        // index: ['name', 'body'],
+        index: ['name'],
 
         // List of keys to store and make available in your UI. The values of
         // the keys are taken from the normalizer function below.
@@ -124,8 +147,9 @@ module.exports = {
             id: node.id,
             name: node.name,
             category: node.category,
-            tags: node.tags,
+            tags: node.tags.join(" "),
             desc: node.desc,
+            url: node.url
           })),
       },
     },]

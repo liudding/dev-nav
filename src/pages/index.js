@@ -12,11 +12,11 @@ const IndexPage = ({ data }) => {
     <Layout>
       <div>
         <div className="grid gap-4 grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-4  justify-items-start py-2">
-          {allApps.map(item => (
-            <Card card={item} className="w-full" key={item.slug}>
+          {/* {allApps.map((item, index) => (
+            <Card card={item} className="w-full" key={item.name}>
 
             </Card>
-          ))}
+          ))} */}
         </div>
       </div>
     </Layout>
