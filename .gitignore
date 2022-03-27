@@ -2,4 +2,6 @@ node_modules/
 .cache/
 public
 
-src/data/apps/*
+.DS_Store
+
+# src/data/apps/*

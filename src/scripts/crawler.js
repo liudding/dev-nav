@@ -177,7 +177,10 @@ const crawler = new Crawler({
             }
 
             if (!app.name) {
-                app.name = title;
+                if (title.indexOf(' - ') > 0) {
+                    title = title.split(' - ')[0];
+                }
+                app.name = title.trim();
             }
 
             if (!app.desc) {
