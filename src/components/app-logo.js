@@ -11,7 +11,7 @@ const Label = ({ url, name, className }) => {
             }
 
             {!url && (<div style={{ width: 40, height: 40 }} className="flex flex-col justify-around items-center bg-gray-100 rounded-full text-center">
-                <div className="uppercase font-bold text-lg">{name.substring(0, 1)}</div>
+                <div className="uppercase font-bold text-lg">{name && name.substring(0, 1)}</div>
             </div>
             )}
         </div>

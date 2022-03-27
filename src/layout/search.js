@@ -8,6 +8,7 @@ import SearchButton from "../components/search-button"
 import Link from "../components/link"
 import AppLogo from "../components/app-logo"
 
+const hasDocument = typeof localStorage !== "undefined"
 
 export default function Search({ className }) {
     const { localSearchApps } = useStaticQuery(graphql`
@@ -48,11 +49,13 @@ export default function Search({ className }) {
     const [query, setQuery] = React.useState(null)
     const results = useFlexSearch(query, localSearchApps.index, localSearchApps.store)
 
-    hotkeys('cmd+k, ctr+k', function(event, handler){
-        // Prevent the default refresh event under WINDOWS system
-        event.preventDefault() 
-        toggleModal()
-      });
+    if (hasDocument) {
+        hotkeys('cmd+k, ctr+k', function (event, handler) {
+            // Prevent the default refresh event under WINDOWS system
+            event.preventDefault()
+            toggleModal()
+        });
+    }
 
     return (
         <React.Fragment>
@@ -79,7 +82,7 @@ export default function Search({ className }) {
 
                 }}>
 
-                <div className="mx-auto bg-white rounded-lg shadow-lg dark:bg-slate-900 min-h-content max-h-content max-w-[40rem] overflow-hidden" style={{  }}>
+                <div className="mx-auto bg-white rounded-lg shadow-lg dark:bg-slate-900 min-h-content max-h-content max-w-[40rem] overflow-hidden" style={{}}>
                     <div className="relative">
                         <div className="flex absolute inset-y-0 left-0 items-center pl-3 mr-3 pointer-events-none text-gray-900 dark:text-gray-400">
                             <SearchIcon size="20"></SearchIcon>
