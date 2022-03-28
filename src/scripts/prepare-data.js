@@ -23,6 +23,10 @@ function saveAppsToJson(results) {
   })
 
   for (const app of results) {
+    if (!app.name) {
+      continue;
+    }
+    
     if (app.mac) {
       app.tags.push('mac');
     }

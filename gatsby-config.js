@@ -6,7 +6,6 @@ module.exports = {
   },
   plugins: [
     "gatsby-plugin-webpack-bundle-analyser-v2",
-    "gatsby-plugin-offline",
     {
       resolve: `gatsby-plugin-sass`,
       options: {
@@ -22,11 +21,24 @@ module.exports = {
       options: {
         "trackingId": "sss"
       }
-    }, "gatsby-plugin-image", "gatsby-plugin-react-helmet", "gatsby-plugin-sitemap", {
+    }, "gatsby-plugin-image", "gatsby-plugin-react-helmet", "gatsby-plugin-sitemap",
+    {
       resolve: 'gatsby-plugin-manifest',
       options: {
-        "icon": "src/images/icon.png"
+        name: `DevNav`,
+        short_name: `DevNav`,
+        description: '一个给开发者的导航网站',
+        start_url: `/`,
+        background_color: `#888888`,
+        theme_color: `#0088FF`,
+        display: `standalone`,
+        icon: "src/images/icon.png"
       }
+    },
+    {
+      resolve: `gatsby-plugin-offline`,
+      options: {
+      },
     },
     "gatsby-plugin-mdx",
     "gatsby-plugin-sharp",

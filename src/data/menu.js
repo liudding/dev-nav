@@ -43,7 +43,7 @@ const menu = {
 
         },
         {
-            name: "前端",
+            name: "Web 前端",
             slug: "frontend",
             items: [{
                 name: "JavaScript",
