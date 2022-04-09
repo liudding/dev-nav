@@ -12,7 +12,9 @@
     "start": "node src/scripts/prepare-data.js && gatsby develop",
     "build": "node src/scripts/prepare-data.js && gatsby build",
     "serve": "gatsby serve",
-    "clean": "gatsby clean"
+    "clean": "gatsby clean",
+    "crawl": "node src/scripts/crawler.js",
+    "prepare-data": " node src/scripts/prepare-data.js "
   },
   "dependencies": {
     "@headlessui/react": "^1.5.0",

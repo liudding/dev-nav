@@ -8,7 +8,7 @@ var sqlite3 = require('sqlite3').verbose();
 var db = new sqlite3.Database('src/data/appsdb');
 
 db.serialize(function () {
-    db.all("SELECT * FROM apps", function (err, rows) {
+    db.all("SELECT * FROM apps WHERE visible != 0", function (err, rows) {
         findLogosLocally(rows);
 
         startCrawling(rows)
@@ -225,7 +225,10 @@ function startCrawling(apps) {
             return;
         }
 
+       
+
         if (!app.logo || !app.desc || !app.name) {
+            console.log(app.url)
             crawler.queue([{
                 uri: app.url,
                 app: app,
