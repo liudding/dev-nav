@@ -5,7 +5,12 @@ module.exports = {
     siteUrl: `https://www.yourdomain.tld`
   },
   plugins: [
-    "gatsby-plugin-webpack-bundle-analyser-v2",
+    {
+      resolve: "gatsby-plugin-webpack-bundle-analyser-v2",
+      options: {
+        disable: true
+      }
+    },
     {
       resolve: `gatsby-plugin-sass`,
       options: {
