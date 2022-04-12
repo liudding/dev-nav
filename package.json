@@ -10,7 +10,7 @@
   "scripts": {
     "develop": "node src/scripts/prepare-data.js && gatsby develop",
     "start": "node src/scripts/prepare-data.js && gatsby develop",
-    "build": "node src/scripts/prepare-data.js && gatsby build",
+    "build": "gatsby build",
     "serve": "gatsby serve",
     "clean": "gatsby clean",
     "crawl": "node src/scripts/crawler.js",

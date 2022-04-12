@@ -180,6 +180,8 @@ const crawler = new Crawler({
                 app.name = title;
                 if (app.name.indexOf(' – ') > 0) {
                     app.name = app.name.split(' – ')[0];
+                    app.name = app.name.split(' - ')[0];
+                    app.name = app.name.split(' -- ')[0];
                 } else if (app.name.indexOf('|') > 0) {
                     app.name = app.name.split('|')[0];
                 } else if (app.name.indexOf('·') > 0) {

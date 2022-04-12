@@ -2,6 +2,12 @@ import React from "react"
 
 
 const Label = ({ url, name, className }) => {
+    if (url && url.startsWith('@appicons')) {
+        url = url.replace('@appicons/', '/images/app-logos/')
+    } else if (url && url.startsWith('@logos')) {
+        url = url.replace('@logos/', '/images/app-logos/')
+    }
+
     return (
         <div className="logo flex items-center relative dark:text-white">
             {/* <Img fluid={featuredImgFluid} style={{ width: 40, height: 40 }} /> */}
