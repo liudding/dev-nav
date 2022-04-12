@@ -50,7 +50,7 @@ const Layout = ({ children }) => {
             <div className="h-screen w-screen">
               <Dialog.Overlay className="fixed inset-0 bg-black opacity-30" />
 
-              <div className="relative bg-slate-800 rounded max-w-sm h-screen w-[12rem] px-2 flex flex-col">
+              <div className="relative bg-white dark:bg-slate-800 max-w-sm h-screen w-[12rem] px-2 flex flex-col">
                 <view className="py-2 w-full flex items-center justify-between">
                   <div></div>
                   <button onClick={() => setSidebarOpen(false)} className="p-2 mr-2 text-gray-600 rounded cursor-pointer hover:text-gray-900 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">
