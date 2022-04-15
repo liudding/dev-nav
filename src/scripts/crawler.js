@@ -22,6 +22,11 @@ db.close();
 function saveApp(app) {
     var db = new sqlite3.Database('src/data/appsdb');
 
+    if (!app.name || !(app.name.trim())) {
+        app.name = null;
+    }
+
+    console.log('==> ', app.name, app.url)
     var stmt = db.prepare("UPDATE apps SET name = ?, `desc` = ?, logo = ?, updated_at =? WHERE id = ?");
     stmt.run([app.name, app.desc, app.logo, dayjs().format('YYYY-MM-DD HH:mm:ss'), app.id]);
     stmt.finalize();
@@ -195,7 +200,13 @@ const crawler = new Crawler({
                 app.desc = desc
             }
 
-            saveApp(app)
+            try {
+                saveApp(app)
+            } catch (err) {
+                console.log(app)
+                console.log(err)
+            }
+           
         }
         done();
     }

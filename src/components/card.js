@@ -43,7 +43,7 @@ const Card = ({ card, className, ...props }) => {
     }
 
     return (<React.Fragment>
-        <Link to={card.url} target="_blank" className={"relative block flex flex-col items-center justify-between p-6 max-w-sm rounded-lg border antialiased border-gray-200 hover:bg-gray-100 dark:border-gray-700 dark:hover:bg-gray-700 cursor-pointer " + className}>
+        <Link to={card.url} target="_blank" className={"relative block overflow-hidden flex flex-col items-center justify-between p-6 max-w-sm rounded-lg border antialiased border-gray-200 hover:bg-gray-100 dark:border-gray-700 dark:hover:bg-gray-700 cursor-pointer " + className}>
             <div className="relative block w-full">
                 <div className="logo flex justify-between items-center relative">
                     <AppLogo url={card.logo} name={card.name}></AppLogo>
