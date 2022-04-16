@@ -14,7 +14,7 @@ Promise.all(
       const stream = sharp(match)
       const info = await stream.metadata()
 
-      if (info.width < MAX_WIDTH || match.indexOf('-optimized') > 0) {
+      if (info.width < MAX_WIDTH || info.height < MAX_WIDTH || match.indexOf('-optimized') > 0) {
         return
       }
 
@@ -25,7 +25,7 @@ Promise.all(
 
       console.log(`Optimizing ${match}`, optimizedName)
 
-      if (match.indexOf('.png') > 0) {
+      if (info.info === 'png') {
         await stream
           .resize(MAX_WIDTH)
           .png({
