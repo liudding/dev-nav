@@ -33,8 +33,7 @@ export default function Search({ className }) {
     }
 
     function afterOpenModal() {
-        // references are now sync'd and can be accessed.
-        // subtitle.style.color = '#f00';
+
     }
 
     function closeModal() {
@@ -50,6 +49,10 @@ export default function Search({ className }) {
     const results = useFlexSearch(query, localSearchApps.index, localSearchApps.store)
 
     if (hasDocument) {
+        hotkeys.filter = function (event) {
+            return true;
+        }
+
         hotkeys('cmd+k, ctr+k', function (event, handler) {
             // Prevent the default refresh event under WINDOWS system
             event.preventDefault()
@@ -88,7 +91,7 @@ export default function Search({ className }) {
                             <SearchIcon size="20"></SearchIcon>
                         </div>
 
-                        <input id="search-input" onInput={onInputChange} type="search" className="bg-transparent appearance-none outline-none border-none focus-visible:border-none text-gray-900 text-lg  block w-full pl-12 p-2.5 py-4 hover:none focus:none active:none  dark:border-gray-600 dark:placeholder-gray-400 dark:text-white" autoComplete="off" autoCorrect="off" autoCapitalize="off" spellCheck="false" placeholder="输入搜索内容" />
+                        <input id="search-input" onInput={onInputChange} autoFocus type="text" className="bg-transparent appearance-none outline-none border-none focus-visible:border-none text-gray-900 text-lg  block w-full pl-12 p-2.5 py-4 hover:none focus:none active:none  dark:border-gray-600 dark:placeholder-gray-400 dark:text-white" autoComplete="off" autoCorrect="off" autoCapitalize="off" spellCheck="false" placeholder="输入搜索内容" />
                         <div className="flex absolute inset-y-0 right-0 items-center pr-3">
                             <button onClick={closeModal} style={{ fontSize: 10 }} className="text-xs px-1 border rounded hover:bg-gray-100 dark:border-none dark:bg-gray-500 dark:text-gray-200">ESC</button>
                         </div>
