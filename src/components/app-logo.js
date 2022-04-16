@@ -13,10 +13,10 @@ const Label = ({ url, name, className }) => {
             {/* <Img fluid={featuredImgFluid} style={{ width: 40, height: 40 }} /> */}
 
             {
-                url && (url.startsWith('http') || url.startsWith('/')) && <img src={url} style={{ height: 40 }} alt={`${name} logo`} />
+                url && (url.startsWith('http') || url.startsWith('/')) && <img src={url} style={{ height: 40 }} alt={`${name} logo`} className="object-contain" />
             }
 
-            {!url && (<div style={{ width: 40, height: 40 }} className="flex flex-col justify-around items-center bg-gray-100 rounded-full text-center">
+            {!url && (<div style={{ width: 40, height: 40 }} className="flex flex-col justify-around items-center bg-gray-100 rounded-full text-center object-contain">
                 <div className="uppercase font-bold text-lg text-gray-700">{name && name.substring(0, 1)}</div>
             </div>
             )}
