@@ -28,9 +28,7 @@ Promise.all(
       if (info.info === 'png') {
         await stream
           .resize(MAX_WIDTH)
-          .png({
-            quality: QUALITY
-          })
+          .png()
           .toFile(optimizedName)
       } else {
         await stream
