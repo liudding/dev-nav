@@ -50,7 +50,9 @@
     "react-dom": "^17.0.1",
     "react-feather": "^2.0.9",
     "react-helmet": "^6.1.0",
+    "react-hot-keys": "^2.7.2",
     "react-modal": "^3.14.4",
+    "react-scroll": "^1.8.7",
     "sass": "^1.49.9",
     "sqlite3": "^5.0.2"
   },
